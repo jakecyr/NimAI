@@ -136,7 +136,7 @@ public class TeteATete {
      * Establish a connection from client perspective...
      * Connect to a server.  And then play game from away perspective
      **/
-    private void runClientSide() throws UnknownHostException, IOException {
+    private void runClientSide() throws IOException {
         this.sock = new Socket(hostname, port);
         this.out = new PrintWriter(this.sock.getOutputStream(), true);
         this.in = new BufferedReader(new InputStreamReader(this.sock.getInputStream()));

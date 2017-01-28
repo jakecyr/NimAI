@@ -25,13 +25,14 @@ import cad.ai.game.*;
  * Yes, we could make these based on multiple players - but not needed... yet.
  ***********************************************************/
 public class Match implements Callable<Integer> {
-    public static enum State { NOT_STARTED, IN_PROGRESS, TIE, HOME_WIN, AWAY_WIN };
+    public enum State { NOT_STARTED, IN_PROGRESS, TIE, HOME_WIN, AWAY_WIN }
+
     public class Message {
         Player p;        // The player that sent it
         String message;  // The message
         Message(Player p, String message) { this.p = p; this.message = message; }
-    };
-    
+    }
+
     private Player home; // Player one
     private Player away; // Player two
     private Game game;   // Game to play
@@ -68,7 +69,8 @@ public class Match implements Callable<Integer> {
         if (winner == 0) {
             state = State.HOME_WIN; r = 'H';
         } else if (winner == 1) {
-            state = State.AWAY_WIN;; r = 'A';
+            state = State.AWAY_WIN;
+            r = 'A';
         } else {
             if (winner < -1) {
         	// Something went amiss!

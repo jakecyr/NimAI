@@ -20,17 +20,17 @@ public interface AI {
     /**
      * Register the game the AI should currently be playing.
      **/
-    public void attachGame(Game g);
+    void attachGame(Game g);
     
     /**
      * Returns the Move as a String (depends on the game being played)
      **/
-    public String computeMove();
+    String computeMove();
 
     /**
      * Inform AI who the winner is
      *   result is either (H)ome win, (A)way win, (T)ie
      *   Useful if the AI wishes to "learn" from this game.
      **/
-    public void postWinner(char result);
+    void postWinner(char result);
 }

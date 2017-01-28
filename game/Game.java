@@ -16,14 +16,14 @@ package cad.ai.game;
  * a single game (with accomodations for a client/server model approach).
  ***********************************************************/
 public interface Game {
-    public boolean isDone();   // Is the game done?
+    boolean isDone();   // Is the game done?
 
     /**
      * Current state of game (in some string format - game dependent)
      * If force is false then a null is returned if nothing has changed since last getState --- 
      * so doesn't repeatedly send the same data...
      **/
-    public String getState(boolean force);
+    String getState(boolean force);
 
     /**
      * Get State of the game.  For the AI system.
@@ -31,18 +31,18 @@ public interface Game {
      * to the proper state based on the Game.
      * This can be more code-friendly than a string.
      **/
-    public Object getStateAsObject();
+    Object getStateAsObject();
     
     /**
      * Update the current state of game (in some string format - game dependent)
      **/
-    public void updateState(String state);
+    void updateState(String state);
 
     /**
      * Get the move from the player or AI.
      * If AI system is in place, query AI else ask player
      **/
-    public String getMove();
+    String getMove();
 
     /**
      * Process the move requested by the player.
@@ -51,32 +51,32 @@ public interface Game {
      * move is a String format for the move - game dependent.
      * Returns a String message to send back to the player.
      **/
-    public String processMove(int p, String move);
+    String processMove(int p, String move);
 
     /**
      * Get the winner.  Returns player that won.  
      *   0=Home, 1=Away, -1=Tie, -2=Aborted, -3=Not Finished
      **/
-    public int getWinner();
+    int getWinner();
 
     /**
      * Is it current user's turn?  Based on state information...
      **/
-    public boolean isPlayerTurn();
+    boolean isPlayerTurn();
 
     /**
      * Get whose turn it is (0=Home, 1=Away, -1=Nobody yet...)
      **/
-    public int getTurn();
+    int getTurn();
 
     /**
      * Get the player's number (0=Home, 1=Away)
      **/
-    public int getPlayer();
+    int getPlayer();
 
     /**
      * Post the winner - useful to inform AI if it needs to "learn".
      *   result is either (H)ome win, (A)way win, (T)ie
      **/
-    public void postWinner(char result);
+    void postWinner(char result);
 }

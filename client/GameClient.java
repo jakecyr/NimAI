@@ -143,7 +143,7 @@ public class GameClient {
         private BufferedReader in = null;
         private Deque<String> messages = null;
         
-        public Connection() throws UnknownHostException, IOException {
+        public Connection() throws IOException {
             this.sock = new Socket(hostname, port);
             this.out = new PrintWriter(sock.getOutputStream(), true);
             this.in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
@@ -462,7 +462,7 @@ public class GameClient {
      * Start a basic connection running that reads game state updates
      * from the Game Server
      ***/
-    private void startConnection() throws UnknownHostException, IOException {
+    private void startConnection() throws IOException {
         conn = new Connection();
         FutureTask<Integer> task = new FutureTask<Integer>(conn);
         executor.execute(task);

@@ -20,7 +20,8 @@ import java.util.Random;
  *   Winner is first to guess correctly - a tie if both get it in same round.
  ***********************************************************/
 public class SimpleGame implements Game {
-    private static enum State { NOT_GUESSED, HIGH, LOW, CORRECT };
+    private enum State { NOT_GUESSED, HIGH, LOW, CORRECT }
+
     private int answer;
     private State[] ps;   // The state of most recent guess for each player
     private int turn;    // Whose turn is it 0 or 1.
