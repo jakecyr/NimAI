@@ -7,6 +7,9 @@
  * This project is designed to link to a basic Game Server to test
  * AI-based solutions.
  * See README file for more details.
+ *
+ * Edited By: Jake Cyr, Ryan Ek, and Fanonx Rogers
+ * January 30, 2017
  ********************/
 
 package cad.ai.game;
