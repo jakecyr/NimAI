@@ -46,37 +46,28 @@ public class NimAI implements AI {
 
         int[] rows = (int[]) game.getStateAsObject();
         int nimSum = rows[0];
-        int take = 0;
-        int r = 0;
+        int numRows = rows.length;
+        int r;
 
-        //Calculate nimSum
-        for (int i = 1; i < rows.length; i++) {
-            nimSum = nimSum ^ rows[i];
-        }
+        for (int i = 1; i < numRows; i++) nimSum = nimSum ^ rows[i]; //Calculate nimSum
 
-        //Choose random move
-        if (nimSum == 0) {
-            r = ran.nextInt(rows.length);
-            while (rows[r] == 0) r = (r + 1) % rows.length;
-            take = ran.nextInt(rows[r]) + 1;
-
-            return r + "," + take;
-        }
-        //Use nimSum to find optimal move
-        else {
+        //Use the nimSum to return the most optimal quantity of sticks to take
+        if (nimSum != 0) {
             //Loop through all rows
-            for (int i = 0; i < rows.length; i++) {
-                //Find first row where nimSum XOR rows[i]) < rows[i]
-                if ((nimSum ^ rows[i]) < rows[i]) {
-                    take = rows[i] - (nimSum ^ rows[i]);
-                    return i + "," + take;
-                }
+            for (r = 0; r < numRows; r++) {
+                //Find first row where nimSum XOR rows[i]) < rows[i] and return the optimal number to take from that row
+                if ((nimSum ^ rows[r]) < rows[r]) return r + "," + (rows[r] - (nimSum ^ rows[r]));
             }
 
-            System.out.println("Using NimSum");
+            //If no optimal quantity to take found
+            return "0,0";
         }
-
-        return "0,0";
+        //Return a random row and number of sticks to take
+        else {
+            r = ran.nextInt(numRows); //Get the number of rows
+            while (rows[r] == 0) r = (r + 1) % numRows; //Find a non-empty row
+            return r + "," + ran.nextInt(rows[r]) + 1; //Return the number of sticks to take and the row to take them from
+        }
     }
 
     /**
